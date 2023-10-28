@@ -95,7 +95,6 @@ class YOLOv1(nn.Module):
     def _create_fcl(self,numberBox,numberClass,splitFinalSize=7):
         S,B,C = splitFinalSize,numberBox,numberClass
         return nn.Sequential(
-            
             nn.Linear(1024*S*S,496),
             nn.Dropout(0.0),
             nn.LeakyReLU(0.1),
@@ -106,7 +105,7 @@ class YOLOv1(nn.Module):
 # for testing model
 def test():
     model = YOLOv1(numberBox=2,numberClass=20)
-    x = torch.randn((2,3,448,448))
+    x = torch.randn((1,3,448,448))
     print(model(x).shape)
 test()
 
