@@ -107,7 +107,7 @@ def test():
     model = YOLOv1(numberBox=2,numberClass=20)
     x = torch.randn((1,3,448,448))
     print(model(x).shape)
-test()
+# test()
 
 
 

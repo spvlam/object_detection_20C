@@ -16,12 +16,13 @@ class YoloLoss(nn.Module):
         self.lambda_coord = 5
     def forword(self,predictions,target):
         """_summary_
-
+        return value of loss function
         Args:
             predictions (tensor): (batchSize,S*S*30)
-            30-D = (C0,C1,C2,..,C20,Pr1,x1,y1,w1,h1,Pr2,x2,y2,w2,h2)
+            30-D = (C0,C1,C2,..,C19,Pr1,x1,y1,w1,h1,Pr2,x2,y2,w2,h2)
             target (tensor):(batch,S,S,25)
-            25-D = (C0,C1,C2,...,C20,Pr1,x1,y1,w1,h1)
+            25-D = (C0,C1,C2,...,C19,Pr1,x1,y1,w1,h1)
+            
         """
         predictions = predictions.reshape(-1,self.S,self.S,self.C+5*self.B)
         iou_b1= intersection_over_union(predictions[...,21:25],target[...,21:25])
